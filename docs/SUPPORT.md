@@ -2,7 +2,7 @@
 
 ## 1. Overview
 
-Afghan Market will provide a reliable, scalable, multilingual support system for customers, sellers, and platform administrators across different countries.
+Afghan Market will provide a reliable, scalable, multilingual support system for customers, sellers, and platform administrators worldwide.
 
 The support system will help users resolve problems, ask questions, report issues, and communicate with the platform.
 
@@ -63,8 +63,6 @@ Ticket statuses:
 
 ## 5. Live Chat System
 
-The platform may provide real-time communication between users and support agents.
-
 Features:
 
 - Real-time messaging
@@ -78,9 +76,7 @@ Features:
 
 ## 6. Support Agent Management
 
-Support agents will have role-based permissions.
-
-Responsibilities include:
+Support agents will be responsible for:
 
 - Responding to customer requests
 - Helping sellers
@@ -120,7 +116,7 @@ Dispute decisions must follow platform policies and applicable local regulations
 
 ## 9. Priority and Escalation
 
-Support tickets may use these priorities:
+Support ticket priorities:
 
 - LOW
 - NORMAL
