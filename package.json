@@ -3,5 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "description": "Afghanistan's nationwide multi-vendor e-commerce platform",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "packageManager": "pnpm@10.0.0",
+  "scripts": {
+    "dev": "pnpm --filter @afghan-market/web dev",
+    "build": "pnpm --filter @afghan-market/web build",
+    "lint": "pnpm --filter @afghan-market/web lint",
+    "typecheck": "pnpm --filter @afghan-market/web typecheck"
+  }
 }
