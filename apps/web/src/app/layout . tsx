@@ -1,0 +1,31 @@
+import type { Metadata } from "next";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  title: {
+    default: "Afghan Market | افغان مارکت",
+    template: "%s | Afghan Market",
+  },
+  description:
+    "Afghan Market — Afghanistan's nationwide multi-vendor e-commerce marketplace.",
+  applicationName: "Afghan Market",
+  keywords: [
+    "Afghan Market",
+    "افغان مارکت",
+    "Online Shopping",
+    "Afghanistan",
+    "Marketplace",
+  ],
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="fa" dir="rtl">
+      <body>{children}</body>
+    </html>
+  );
+}
