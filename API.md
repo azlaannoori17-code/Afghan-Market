@@ -48,6 +48,7 @@ Example:
 - /api/v1/payments
 
 Future versions must be introduced without unnecessarily breaking existing clients.
+Deprecated API versions must follow a documented sunset policy, with advance notice and migration guidance for affected clients.
 
 ## 5. Authentication Endpoints
 
@@ -63,6 +64,7 @@ Authentication endpoints should support:
 - Token refresh.
 - Multi-factor authentication.
 - Session management.
+Authentication endpoints must enforce rate limits, temporary account protection, and abuse detection to prevent brute-force and credential-stuffing attacks.
 
 Example endpoints:
 
@@ -84,7 +86,7 @@ User endpoints should support:
 - Notification preferences.
 - Account status.
 - User data management.
-
+Users must only access or modify their own account data unless an authorized administrator has explicitly granted access within the appropriate permission scope.
 Example endpoints:
 
 - GET /api/v1/users/me
@@ -106,6 +108,7 @@ Seller endpoints should support:
 - Seller dashboards.
 - Seller documents.
 - Seller status management.
+ Seller and store endpoints must enforce organization-level authorization, ensuring that sellers can only access and manage stores and resources they are authorized to control.
 
 Example endpoints:
 
