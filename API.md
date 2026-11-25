@@ -2,7 +2,7 @@
 
 ## 1. Overview
 
-The Afghan Market API architecture defines how web applications, mobile applications, backend services, and external providers communicate with the platform.
+The QAVENTRIX API architecture defines how web applications, mobile applications, backend services, and external providers communicate with the platform.
 
 The API must support a global multi-vendor marketplace operating across multiple countries, currencies, languages, and regions.
 
@@ -487,4 +487,4 @@ Future API capabilities may include:
 
 The goal is to build a secure, consistent, reliable, and globally scalable API architecture.
 
-The Afghan Market API must connect web, mobile, backend services, sellers, customers, administrators, and external providers through well-defined interfaces.
+The QAVENTRIX API must connect web, mobile, backend services, sellers, customers, administrators, and external providers through well-defined interfaces.
