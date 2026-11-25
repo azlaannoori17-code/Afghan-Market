@@ -1,14 +1,14 @@
 {
-  "name": "afghan-market",
+  "name": "qaventrix",
   "version": "1.0.0",
   "private": true,
-  "description": "Afghanistan's nationwide multi-vendor e-commerce platform",
+  "description": "Global multi-vendor e-commerce marketplace",
   "license": "UNLICENSED",
   "packageManager": "pnpm@10.0.0",
   "scripts": {
-    "dev": "pnpm --filter @afghan-market/web dev",
-    "build": "pnpm --filter @afghan-market/web build",
-    "lint": "pnpm --filter @afghan-market/web lint",
-    "typecheck": "pnpm --filter @afghan-market/web typecheck"
+    "dev": "pnpm --filter @qaventrix/web dev",
+    "build": "pnpm --filter @qaventrix/web build",
+    "lint": "pnpm --filter @qaventrix/web lint",
+    "typecheck": "pnpm --filter @qaventrix/web typecheck"
   }
 }
