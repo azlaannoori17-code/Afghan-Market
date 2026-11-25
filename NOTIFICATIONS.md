@@ -2,7 +2,7 @@
 
 ## 1. Overview
 
-The Afghan Market notification system provides reliable, timely, and personalized notifications to customers, sellers, administrators, and support agents.
+The QAVENTRIX notification system provides reliable, timely, and personalized notifications to customers, sellers, administrators, and support agents.
 
 The system supports multiple notification channels and languages across different countries and regions.
 
@@ -208,4 +208,5 @@ Future capabilities may include:
 
 ## 16. Final Goal
 
-The goal is to build a reliable, secure, multilingual, and globally scalable notification system that keeps every Afghan Market user informed about important activities and updates.
+The goal is to build a reliable, secure, multilingual, and globally scalable notification system that keeps every QAVENTRIX user informed about important activities and updates.
+
