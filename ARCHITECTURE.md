@@ -343,13 +343,6 @@ Checkout must use concurrency-safe stock reservation and confirmation processes.
 PostgreSQL will remain the authoritative source of inventory data.
 
 Redis may assist with temporary coordination or caching, but it must never become the authoritative inventory database.
-
-Checkout must use concurrency-safe stock reservation and confirmation processes.
-
-PostgreSQL will remain the authoritative source of inventory data.
-
-Redis may assist with temporary coordination or caching, but it must never become the authoritative inventory database.
-
 ## 11. Shopping Cart and Checkout
 
 The shopping cart will support products from multiple sellers.
