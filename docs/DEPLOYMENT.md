@@ -345,7 +345,7 @@ This allows the team to:
 - Automate deployments.
 - Reduce manual configuration errors.
 
-Infrastructure changes must be reviewed before production application.
+Infrastructure changes must be reviewed and approved before being applied to production.
 
 ## 17. Performance Optimization
 
