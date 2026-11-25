@@ -252,6 +252,7 @@ The standard workflow should be:
 7. Payment processing begins when required.
 8. Successful order confirmation commits the reservation.
 9. Failed, cancelled, or expired operations release the reservation according to the applicable workflow.
+10. When a reservation is committed, the corresponding reserved quantity and on-hand quantity must be updated atomically. The operation must create an inventory movement record and must not deduct the same quantity more than once.
 
 The system must support orders containing products from multiple sellers.
 
