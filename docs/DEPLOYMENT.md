@@ -2,7 +2,7 @@
 
 ## 1. Overview
 
-Afghan Market is designed as a global multi-vendor e-commerce marketplace.
+QAVENTRIX is designed as a global multi-vendor e-commerce marketplace.
 
 Its deployment architecture must support:
 - Global customers and sellers.
@@ -32,7 +32,7 @@ The deployment strategy follows these principles:
 
 ## 3. Deployment Environments
 
-Afghan Market will use separate environments.
+QAVENTRIX will use separate environments.
 
 ### 3.1 Development
 
@@ -270,7 +270,7 @@ Sensitive personal information, passwords, payment credentials, and authenticati
 
 ## 13. Backup and Disaster Recovery
 
-Afghan Market must maintain a documented disaster recovery strategy.
+QAVENTRIX must maintain a documented disaster recovery strategy.
 
 Backup requirements:
 
