@@ -1,8 +1,8 @@
-# Afghan Market – Global Shopping Cart and Checkout Architecture
+# QAVENTRIX – Global Shopping Cart and Checkout Architecture
 
 ## 1. Purpose
 
-The Shopping Cart and Checkout System manages the customer purchasing experience across the Afghan Market global marketplace.
+The Shopping Cart and Checkout System manages the customer purchasing experience across the QAVENTRIX global marketplace.
 
 It must provide a simple, secure, reliable, and scalable purchasing process.
 
@@ -374,7 +374,7 @@ Future development may include:
 
 ## 24. Core Principles
 
-The Afghan Market Shopping Cart and Checkout System must be:
+The QAVENTRIX Shopping Cart and Checkout System must be:
 
 - Global.
 - Scalable.
@@ -386,4 +386,5 @@ The Afghan Market Shopping Cart and Checkout System must be:
 - Transaction-safe.
 - Customer-focused.
 
-Afghan Market must provide a smooth and trustworthy shopping experience for customers worldwide.
+QAVENTRIX must provide a smooth and trustworthy shopping experience for customers worldwide.
+
