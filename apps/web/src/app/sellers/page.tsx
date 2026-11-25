@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const sellers = [
   {
     id: 1,
@@ -70,20 +72,20 @@ export default function SellersPage() {
           flexWrap: "wrap",
           gap: "15px",
         }}>
-          <a href="/" style={{
+          <Link href="/" style={{
             color: "#126b45",
             fontSize: "24px",
             fontWeight: "bold",
           }}>
             افغان مارکت 🇦🇫
-          </a>
+          </Link>
 
           <nav style={{
             display: "flex",
             gap: "20px",
             flexWrap: "wrap",
           }}>
-            <a href="/">خانه</a>
+            <Link href="/">خانه</Link>
             <a href="/products">محصولات</a>
             <a href="/sellers" style={{ color: "#126b45" }}>
               فروشندگان
@@ -261,4 +263,4 @@ export default function SellersPage() {
       </footer>
     </main>
   );
-      }
+}
