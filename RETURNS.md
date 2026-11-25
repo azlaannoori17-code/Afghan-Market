@@ -2,7 +2,7 @@
 
 ## 1. Overview
 
-The Afghan Market returns and refunds architecture defines how customers can request product returns, how sellers and administrators process those requests, and how refunds are managed.
+The QAVENTRIX returns and refunds architecture defines how customers can request product returns, how sellers and administrators process those requests, and how refunds are managed.
 
 The system must support a global multi-vendor marketplace operating across different countries, currencies, shipping providers, and consumer protection regulations.
 
@@ -361,4 +361,4 @@ Future capabilities may include:
 
 The goal is to build a transparent, fair, secure, and globally scalable returns and refunds system.
 
-Afghan Market must provide customers and sellers with a reliable return experience while protecting financial integrity and supporting applicable consumer protection requirements worldwide.
+QAVENTRIX must provide customers and sellers with a reliable return experience while protecting financial integrity and supporting applicable consumer protection requirements worldwide.
