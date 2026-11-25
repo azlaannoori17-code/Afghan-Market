@@ -1,8 +1,8 @@
-# Afghan Market — Global Legal and Regulatory Compliance Architecture
+# QAVENTRIX — Global Legal and Regulatory Compliance Architecture
 
 ## 1. Overview
 
-Afghan Market will operate as a global multi-vendor marketplace and must provide a flexible compliance framework that supports applicable laws and regulations across different countries and jurisdictions.
+QAVENTRIX will operate as a global multi-vendor marketplace and must provide a flexible compliance framework that supports applicable laws and regulations across different countries and jurisdictions.
 
 The compliance system must help the platform, sellers, and business partners understand and follow their legal responsibilities.
 
@@ -300,4 +300,4 @@ Planned improvements:
 
 ## 22. Core Principle
 
-Afghan Market must operate responsibly, transparently, and securely while respecting applicable laws and regulations in every market where it conducts business.
+QAVENTRIX must operate responsibly, transparently, and securely while respecting applicable laws and regulations in every market where it conducts business.
