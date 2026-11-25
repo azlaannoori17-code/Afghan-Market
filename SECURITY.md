@@ -2,7 +2,7 @@
 
 ## 1. Overview
 
-The Afghan Market security architecture defines the security principles, policies, and technical controls required to protect the platform, its users, sellers, administrators, transactions, and business data.
+The QAVENTRIX security architecture defines the security principles, policies, and technical controls required to protect the platform, its users, sellers, administrators, transactions, and business data.
 
 Security must be considered in every part of the platform from the beginning.
 
@@ -291,5 +291,4 @@ Future capabilities may include:
 ## 20. Final Goal
 
 The goal is to build a secure, reliable, privacy-conscious, and globally scalable marketplace.
-
-Afghan Market must protect customers, sellers, administrators, transactions, and business information while maintaining trust across the entire platform.
+QAVENTRIX must protect customers, sellers, administrators, transactions, and business information while maintaining trust across the entire platform.
