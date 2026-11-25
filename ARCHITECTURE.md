@@ -108,6 +108,224 @@ The planned system follows a centralized backend architecture.
         PostgreSQL        Redis       Object Storage
              |
        Persistent Data
+## 5. Client Applications
+
+### 5.1 Web Application
+
+The web application will provide interfaces for:
+
+- Customers
+- Sellers
+- Store managers
+- Administrators
+- Support agents
+
+The web application will be developed using Next.js.
+
+### 5.2 Mobile Applications
+
+Android and iOS applications will be developed using React Native with Expo.
+
+Mobile applications will use the same backend APIs and business rules as the web application.
+
+### 5.3 Shared Business Logic
+
+Business rules must be enforced by the backend.
+
+Client-side validation may improve user experience, but it must never replace server-side validation or authorization.
+
+No client application may be trusted to calculate authoritative prices, commissions, balances, permissions, or inventory availability.
+
+## 6. Backend Architecture
+
+The initial backend will follow a modular monolith architecture using NestJS.
+
+Each major business domain will have clearly defined responsibilities and boundaries.
+
+This approach provides a manageable starting point without introducing unnecessary microservice complexity.
+
+The architecture should allow individual modules to be separated into independent services later if actual scale and operational requirements justify it.
+
+Planned backend modules include:
+
+- Authentication
+- User Management
+- Role and Permission Management
+- Seller Management
+- Store Management
+- Product Catalog
+- Product Listings
+- Categories and Brands
+- Inventory Management
+- Shopping Cart
+- Checkout
+- Order Management
+- Payment Management
+- Financial Ledger
+- Commission Management
+- Seller Settlements
+- Shipping and Delivery
+- Tax Management
+- Promotions and Discounts
+- Returns and Refunds
+- Reviews and Ratings
+- Search
+- Notifications
+- Customer Support
+- Analytics and Reporting
+- Administrative Operations
+- Audit Logging
+
+Modules should communicate through clearly defined interfaces and application services.
+
+## 7. Identity, Roles, and Permissions
+
+The platform will support the following primary roles:
+
+### SUPER_ADMIN
+
+The highest-level platform administrator.
+
+Responsible for platform ownership, critical settings, system-wide administration, and protected operations.
+
+### ADMIN
+
+An authorized administrator responsible for assigned platform management functions.
+
+### SELLER
+
+A seller who manages authorized seller organizations, stores, listings, inventory, and orders.
+
+### CUSTOMER
+
+A customer who browses products, manages an account, and places orders.
+
+### SUPPORT_AGENT
+
+An authorized support representative who handles assigned customer and seller support operations.
+
+### 7.1 Authorization Principles
+
+The platform will use Role-Based Access Control (RBAC) combined with resource ownership and scope-based authorization.
+
+Permissions must be enforced on the backend.
+
+A role alone must not automatically grant access to every resource.
+
+The backend must verify:
+
+- User identity
+- Assigned roles
+- Required permissions
+- Seller organization membership
+- Store membership
+- Resource ownership
+- Access scope
+- Resource status
+
+Sensitive administrative operations must be protected by additional authorization and audit requirements.
+
+## 8. Seller and Store Architecture
+
+Seller organizations and stores must be separate business concepts.
+
+A seller organization may own multiple stores.
+
+A store belongs to one seller organization, except for the specially controlled Afghan Market official store.
+
+The architecture must support:
+
+- Seller organizations
+- Multiple stores per seller
+- Store managers
+- Seller employees
+- Store-specific permissions
+- Store-specific inventory
+- Store-specific listings
+- Store-specific operational settings
+
+Seller employees may receive different permissions and access scopes.
+
+A seller must never access another seller's private organization, store, inventory, orders, or financial information without explicit authorization.
+
+The Afghan Market official store must be managed through protected platform ownership rules.
+
+## 9. Product Catalog and Listings
+
+The platform will distinguish between canonical catalog products and seller-specific product listings.
+
+### 9.1 Canonical Products
+
+Canonical products represent the general product identity in the marketplace.
+
+They may contain:
+
+- Product name
+- Description
+- Brand
+- Category
+- Attributes
+- Images
+- Product specifications
+- Variants
+
+### 9.2 Product Variants
+
+A product may have multiple variants.
+
+Examples include:
+
+- Size
+- Color
+- Model
+- Capacity
+- Material
+
+Variants must be identifiable independently when required for inventory and ordering.
+
+### 9.3 Seller Listings
+
+A seller listing represents a seller's offer for a product or product variant.
+
+Each listing may have its own:
+
+- Seller
+- Store
+- Price
+- Currency
+- Stock availability
+- Condition
+- Listing status
+- Delivery options
+- Seller-specific information
+
+Multiple sellers may offer the same canonical product with different prices and availability.
+
+Catalog moderation and product approval rules will be managed centrally.
+
+## 10. Inventory Management
+
+Inventory must be managed at the appropriate seller, store, warehouse, and listing level.
+
+The inventory architecture must support:
+
+- Stock quantities
+- Available quantities
+- Reserved quantities
+- Inventory movements
+- Stock adjustments
+- Warehouse locations
+- Stock transfers
+- Low-stock alerts
+- Inventory history
+
+Inventory changes must be recorded consistently.
+
+Checkout must use concurrency-safe stock reservation and confirmation processes.
+
+PostgreSQL will remain the authoritative source of inventory data.
+
+Redis may assist with temporary coordination or caching, but it must never become the authoritative inventory database.
 ## 11. Shopping Cart and Checkout
 
 The shopping cart will support products from multiple sellers.
