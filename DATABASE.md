@@ -1,3 +1,6 @@
+# QAVENTRIX — Global Database Architecture
+
+## 1. Overview
 QAVENTRIX is a global-ready, multi-vendor e-commerce marketplace.
 Its database architecture must support:
 - Multiple countries and markets.
