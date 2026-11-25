@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function AccountPage() {
   return (
     <main style={{
@@ -19,20 +21,20 @@ export default function AccountPage() {
           flexWrap: "wrap",
           gap: "15px",
         }}>
-          <a href="/" style={{
+          <Link href="/" style={{
             color: "#126b45",
             fontSize: "24px",
             fontWeight: "bold",
           }}>
             افغان مارکت 🇦🇫
-          </a>
+          </Link>
 
           <nav style={{
             display: "flex",
             gap: "20px",
             flexWrap: "wrap",
           }}>
-            <a href="/">خانه</a>
+            <Link href="/">خانه</Link>
             <a href="/products">محصولات</a>
             <a href="/sellers">فروشندگان</a>
             <a href="/account" style={{ color: "#126b45" }}>
@@ -342,4 +344,4 @@ export default function AccountPage() {
       </footer>
     </main>
   );
-      }
+                }
