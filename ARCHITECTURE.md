@@ -79,7 +79,7 @@ Technology choices may evolve when justified by security, scalability, performan
 
 The planned system follows a centralized backend architecture.
 
-                ```text
+```text
                   CUSTOMER / SELLER / ADMIN
                             |
              +--------------+--------------+
@@ -335,7 +335,8 @@ The inventory architecture must support:
 - Stock transfers
 - Low-stock alerts
 - Inventory history
- Inventory changes must be recorded consistently.
+
+Inventory changes must be recorded consistently.
 
 Checkout must use concurrency-safe stock reservation and confirmation processes.
 
@@ -708,10 +709,10 @@ The actual repository structure must be kept consistent with the implementation.
 ## 24. Deployment and Environments
 The platform will use separate environments to reduce operational risk.
 Planned environments include:
--Local development
--Automated testing and continuous integration
--Staging
--Production
+- Local development
+- Automated testing and continuous integration
+- Staging
+- Production
 Each environment must have isolated configuration, credentials, and data.
 Production secrets must never be committed to the repository.
 Deployments should use repeatable build and release processes.
