@@ -2,7 +2,7 @@
 
 ## 1. Overview
 
-The Afghan Market analytics architecture defines how platform data is collected, processed, analyzed, and presented to support business decisions.
+The QAVENTRIX analytics architecture defines how platform data is collected, processed, analyzed, and presented to support business decisions.
 
 The system must provide meaningful insights for customers, sellers, administrators, and business operators.
 
@@ -394,4 +394,4 @@ Future analytics capabilities may include:
 
 The goal is to build a reliable, secure, accurate, and globally scalable analytics system.
 
-Afghan Market should use trustworthy business data to improve customer experience, support sellers, optimize operations, and guide long-term marketplace growth.
+QAVENTRIX should use trustworthy business data to improve customer experience, support sellers, optimize operations, and guide long-term marketplace growth.
