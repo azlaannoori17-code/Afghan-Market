@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const categories = [
   "موبایل و تبلت",
   "لپ‌تاپ و کامپیوتر",
@@ -50,9 +52,9 @@ export default function HomePage() {
           </h1>
 
           <nav style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
-            <a href="/" style={{ color: "#172033" }}>
+            <Link href="/" style={{ color: "#172033" }}>
               خانه
-            </a>
+            </Link>
             <a href="/products" style={{ color: "#172033" }}>
               محصولات
             </a>
@@ -218,4 +220,4 @@ export default function HomePage() {
       </footer>
     </main>
   );
-                   }
+}
