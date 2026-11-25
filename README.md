@@ -1,36 +1,47 @@
-# Afghan Market
+# QAVENTRIX
 
-### Afghanistan's Nationwide Multi-Vendor E-Commerce Platform
+### Global Multi-Vendor E-Commerce Marketplace
 
-Afghan Market is a modern online marketplace designed to connect buyers and sellers across all provinces of Afghanistan.
+QAVENTRIX is a global-ready multi-vendor e-commerce marketplace designed to connect customers, independent sellers, and businesses through one unified digital commerce platform.
+
+The platform will initially launch in Afghanistan, with an architecture designed to support international expansion.
 
 ## Our Vision
-To build Afghanistan's most trusted, accessible, and advanced online marketplace.
+
+To build a trusted, scalable, and innovative global marketplace.
 
 ## Core Modules
+
 - Customer Management
-- Seller Management
+- Seller and Store Management
 - Product Management
 - Categories and Brands
-- Shopping Cart
+- Shopping Cart and Checkout
 - Order Management
 - Payment Management
-- Delivery Management
+- Shipping and Delivery
 - Inventory Management
-- Admin Dashboard
-- Security and Authentication
+- Promotions and Discounts
+- Reviews and Ratings
+- Analytics and Reporting
+- Administration and Security
 
-## Platform Goals
+## Platform Principles
+
+- Global Scalability
+- Security by Design
 - High Performance
-- Strong Security
-- Mobile-Friendly Design
-- Scalable Architecture
-- Reliable Database
-- User-Friendly Experience
+- Multi-Language Support
+- Multi-Currency Support
+- Mobile-Friendly Experience
+- Reliable Data Architecture
 
 ## Development
+
 Project Status: Initial Development
 
 Version: 1.0.0
 
-Country: Afghanistan
+Initial Launch Market: Afghanistan
+
+Long-Term Scope: Global
