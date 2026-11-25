@@ -97,6 +97,7 @@ Rules:
 4. Backend services must validate inputs and permissions.
 5. Database access must follow least-privilege principles.
 6. Sensitive operations must be logged and monitored.
+7. Database queries must use parameterized statements or safe ORM query methods to prevent SQL injection.
 
 The backend is responsible for enforcing business rules and access control.
 
@@ -164,6 +165,7 @@ Additional roles may be introduced when required.
 A user must not be restricted to a single permanent role.
 
 The system must support multiple role assignments and scoped permissions.
+Each role assignment must define its authorization scope, such as platform, seller organization, or individual store.
 
 For example:
 
@@ -395,6 +397,7 @@ The system must support:
 ### Inventory Consistency
 
 Inventory changes must be transactional.
+Each inventory balance must have a clearly defined stock identity and warehouse location. Database constraints must prevent duplicate balance records for the same stock item and location.
 
 The system must prevent overselling when multiple customers attempt to purchase the same stock simultaneously.
 
@@ -623,6 +626,7 @@ For each journal entry:
 - Entries must belong to the appropriate currency.
 - Financial records must have clear references.
 - Transactions must be committed atomically.
+- Posted journal entries must be immutable and must never be modified to correct financial errors; corrections must use reversal or adjustment entries.
 
 ### Ledger Immutability
 
@@ -1025,6 +1029,7 @@ Important examples include:
 - Valid seller and store relationships.
 
 Critical business rules must be validated by the backend as well as by database constraints when appropriate.
+Balanced journal entries must be validated across all related journal lines within the same transaction before they can be posted.
 
 ---
 
@@ -1136,6 +1141,7 @@ Prisma schema files and database migrations must be version-controlled.
 - Destructive changes require explicit planning.
 - Data migrations must preserve existing records.
 - Database and application versions must remain compatible.
+- Applied migrations must be immutable; corrections must be made through new migrations.
 
 ### Expand-and-Contract Strategy
 
@@ -1167,7 +1173,7 @@ Database security must include:
 - Secure backup storage.
 - Audit logging.
 - Controlled administrative access.
-
+User passwords must never be stored in plaintext and must be protected using a secure, industry-standard password hashing algorithm.
 Sensitive data must be encrypted at rest or application-encrypted where appropriate.
 
 Personal information must be collected and retained only as required.
@@ -1202,6 +1208,7 @@ Where deletion is required, the platform must distinguish between:
 Deleting a user account must not silently destroy legally required financial or transaction records.
 
 Data export and account privacy requests must be supported where required.
+Deletion and anonymization operations must be auditable, securely executed, and designed to prevent unauthorized recovery of personal data.
 
 ---
 
@@ -1213,6 +1220,7 @@ Requirements:
 
 - Scheduled backups.
 - Encrypted backup storage.
+- Backups must be stored in a separate environment or geographic location to protect against primary infrastructure failures.
 - Appropriate backup retention.
 - Point-in-time recovery where supported.
 - Backup integrity verification.
@@ -1250,6 +1258,7 @@ Possible future improvements:
 Do not introduce sharding or multi-region writes prematurely.
 
 Any future scaling strategy must preserve transaction integrity and data ownership rules.
+Database performance and scalability must be validated through load testing and realistic workload simulations before major production scaling decisions.
 
 ---
 
@@ -1268,6 +1277,7 @@ Requirements:
 - Never treat cache state as authoritative payment or order status.
 
 Critical operations must verify their state against PostgreSQL.
+Cache invalidation and update operations must be designed to handle failures, retries, and concurrent requests without compromising database consistency.
 
 ---
 
@@ -1301,6 +1311,7 @@ Each domain must have clear ownership of its data and business rules.
 Avoid uncontrolled direct database access across unrelated modules.
 
 Cross-domain operations must use clearly defined application services and transaction boundaries.
+Each module must expose controlled data access interfaces and must not depend on the internal database implementation of another module.
 
 ---
 
@@ -1319,6 +1330,7 @@ Future analytics may use:
 - Business intelligence tools.
 
 Analytical workloads must not compromise critical transactional performance.
+Analytical data pipelines must support data validation, reconciliation, and monitoring to detect missing, duplicated, or inconsistent records.
 
 ---
 
@@ -1341,6 +1353,7 @@ Database-related testing must include:
 Test data must not expose real customer or financial information.
 
 Critical financial and inventory operations require automated integration tests.
+Database recovery procedures must be tested regularly to verify that interrupted operations, failed migrations, and system failures do not leave critical data in an inconsistent state.
 
 ---
 
@@ -1447,6 +1460,7 @@ Detailed business requirements are maintained in:
 All documents must remain consistent with the central architecture.
 
 If a conflict is discovered, it must be resolved explicitly rather than allowing contradictory technical requirements.
+The central architecture document must serve as the primary reference for resolving cross-document architectural conflicts.
 
 ---
 
