@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const cartItems = [
   {
     id: 1,
@@ -54,20 +56,20 @@ export default function CartPage() {
           flexWrap: "wrap",
           gap: "15px",
         }}>
-          <a href="/" style={{
+          <Link href="/" style={{
             color: "#126b45",
             fontSize: "24px",
             fontWeight: "bold",
           }}>
             افغان مارکت 🇦🇫
-          </a>
+          </Link>
 
           <nav style={{
             display: "flex",
             gap: "20px",
             flexWrap: "wrap",
           }}>
-            <a href="/">خانه</a>
+            <Link href="/">خانه</Link>
             <a href="/products">محصولات</a>
             <a href="/sellers">فروشندگان</a>
             <a href="/account">حساب من</a>
@@ -317,4 +319,4 @@ export default function CartPage() {
       </footer>
     </main>
   );
-}
+      }
