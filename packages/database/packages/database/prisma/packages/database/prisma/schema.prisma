@@ -1,0 +1,273 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ==========================================
+// ENUMS
+// ==========================================
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+  PENDING_VERIFICATION
+  DELETED
+}
+
+enum IdentityType {
+  EMAIL
+  PHONE
+  OAUTH
+}
+
+enum AuthProvider {
+  PASSWORD
+  GOOGLE
+  APPLE
+  MICROSOFT
+  FACEBOOK
+  OTHER
+}
+
+enum RoleScopeType {
+  GLOBAL
+  SELLER_ORGANIZATION
+  STORE
+  BRANCH
+}
+
+enum SecurityEventSeverity {
+  INFO
+  WARNING
+  HIGH
+  CRITICAL
+}
+
+// ==========================================
+// 1. USERS
+// ==========================================
+
+model User {
+  id        String     @id @default(uuid()) @db.Uuid
+  status    UserStatus @default(PENDING_VERIFICATION)
+
+  createdAt DateTime   @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime   @updatedAt @db.Timestamptz(6)
+  deletedAt DateTime?  @db.Timestamptz(6)
+
+  profile         UserProfile?
+  authIdentities  UserAuthIdentity[]
+  sessions        UserSession[]
+  roleAssignments UserRoleAssignment[]
+  securityEvents  UserSecurityEvent[]
+
+  @@index([status])
+  @@index([createdAt])
+  @@map("users")
+}
+
+// ==========================================
+// 2. USER PROFILES
+// ==========================================
+
+model UserProfile {
+  id          String    @id @default(uuid()) @db.Uuid
+  userId      String    @unique @db.Uuid
+
+  firstName   String?   @db.VarChar(100)
+  lastName    String?   @db.VarChar(100)
+  displayName String?   @db.VarChar(150)
+  avatarUrl   String?   @db.VarChar(500)
+
+  dateOfBirth DateTime? @db.Date
+  countryCode String?   @db.VarChar(2)
+  province    String?   @db.VarChar(100)
+  city        String?   @db.VarChar(100)
+  address     String?   @db.VarChar(500)
+
+  createdAt   DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt   DateTime  @updatedAt @db.Timestamptz(6)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@map("user_profiles")
+}
+
+// ==========================================
+// 3. USER AUTH IDENTITIES
+// ==========================================
+
+model UserAuthIdentity {
+  id             String       @id @default(uuid()) @db.Uuid
+  userId         String       @db.Uuid
+
+  identityType   IdentityType
+  provider       AuthProvider @default(PASSWORD)
+
+  identifier     String       @db.VarChar(320)
+  providerSubject String?     @db.VarChar(255)
+
+  passwordHash   String?      @db.VarChar(255)
+  isVerified     Boolean      @default(false)
+  verifiedAt     DateTime?    @db.Timestamptz(6)
+
+  createdAt      DateTime     @default(now()) @db.Timestamptz(6)
+  updatedAt      DateTime     @updatedAt @db.Timestamptz(6)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@unique([identityType, identifier])
+  @@unique([provider, providerSubject])
+  @@index([userId])
+  @@index([isVerified])
+  @@map("user_auth_identities")
+}
+
+// ==========================================
+// 4. USER SESSIONS
+// ==========================================
+
+model UserSession {
+  id           String    @id @default(uuid()) @db.Uuid
+  userId       String    @db.Uuid
+
+  tokenHash    String    @unique @db.VarChar(255)
+  ipAddress    String?   @db.VarChar(45)
+  userAgent    String?   @db.VarChar(500)
+
+  expiresAt    DateTime  @db.Timestamptz(6)
+  lastUsedAt   DateTime? @db.Timestamptz(6)
+  revokedAt    DateTime? @db.Timestamptz(6)
+
+  createdAt    DateTime  @default(now()) @db.Timestamptz(6)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@index([revokedAt])
+  @@map("user_sessions")
+}
+
+// ==========================================
+// 5. ROLES
+// ==========================================
+
+model Role {
+  id          String   @id @default(uuid()) @db.Uuid
+
+  code        String   @unique @db.VarChar(80)
+  name        String   @db.VarChar(120)
+  description String?  @db.VarChar(500)
+
+  isSystem    Boolean  @default(false)
+  isActive    Boolean  @default(true)
+
+  createdAt   DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt   DateTime @updatedAt @db.Timestamptz(6)
+
+  permissions RolePermission[]
+  assignments UserRoleAssignment[]
+
+  @@index([isActive])
+  @@map("roles")
+}
+
+// ==========================================
+// 6. PERMISSIONS
+// ==========================================
+
+model Permission {
+  id          String   @id @default(uuid()) @db.Uuid
+
+  code        String   @unique @db.VarChar(120)
+  name        String   @db.VarChar(120)
+  description String?  @db.VarChar(500)
+
+  createdAt   DateTime @default(now()) @db.Timestamptz(6)
+
+  roles RolePermission[]
+
+  @@map("permissions")
+}
+
+// ==========================================
+// 7. ROLE PERMISSIONS
+// ==========================================
+
+model RolePermission {
+  id           String @id @default(uuid()) @db.Uuid
+
+  roleId       String @db.Uuid
+  permissionId String @db.Uuid
+
+  role Role @relation(fields: [roleId], references: [id], onDelete: Restrict)
+
+  permission Permission @relation(
+    fields: [permissionId],
+    references: [id],
+    onDelete: Restrict
+  )
+
+  @@unique([roleId, permissionId])
+  @@index([permissionId])
+  @@map("role_permissions")
+}
+
+// ==========================================
+// 8. USER ROLE ASSIGNMENTS
+// ==========================================
+
+model UserRoleAssignment {
+  id          String        @id @default(uuid()) @db.Uuid
+
+  userId      String        @db.Uuid
+  roleId      String        @db.Uuid
+
+  scopeType   RoleScopeType @default(GLOBAL)
+  scopeId     String?       @db.Uuid
+
+  assignedAt  DateTime      @default(now()) @db.Timestamptz(6)
+  expiresAt   DateTime?     @db.Timestamptz(6)
+  isActive    Boolean       @default(true)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
+  role Role @relation(fields: [roleId], references: [id], onDelete: Restrict)
+
+  @@index([userId, isActive])
+  @@index([roleId])
+  @@index([scopeType, scopeId])
+  @@map("user_role_assignments")
+}
+
+// ==========================================
+// 9. USER SECURITY EVENTS
+// ==========================================
+
+model UserSecurityEvent {
+  id          String                @id @default(uuid()) @db.Uuid
+
+  userId      String                @db.Uuid
+  eventType   String                @db.VarChar(100)
+  severity    SecurityEventSeverity @default(INFO)
+
+  description String?               @db.VarChar(1000)
+  ipAddress   String?               @db.VarChar(45)
+  userAgent   String?               @db.VarChar(500)
+
+  metadata    Json?
+
+  createdAt   DateTime              @default(now()) @db.Timestamptz(6)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@index([userId, createdAt])
+  @@index([eventType])
+  @@index([severity, createdAt])
+  @@map("user_security_events")
+}
