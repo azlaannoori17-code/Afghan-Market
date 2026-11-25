@@ -747,3 +747,103 @@ The platform should monitor:
 - Indexing delay.
 - Indexing failures.
 - Zero-result rates.
+- Search error rates.
+- Cache hit rates.
+- Search engine health.
+- Background job failures.
+- Resource consumption.
+
+Operational alerts must be configurable.
+
+Logs must avoid unnecessary personal or sensitive information.
+
+## 30. Search Administration
+
+Authorized administrators should be able to manage:
+
+- Search configuration.
+- Search synonyms.
+- Search stop words.
+- Searchable attributes.
+- Search filters.
+- Ranking weights.
+- Sponsored placement rules.
+- Search visibility policies.
+- Indexing operations.
+- Search analytics.
+- Search abuse controls.
+
+Administrative changes must be permission-controlled and auditable.
+
+## 31. Global Market and Currency Handling
+
+Search must support multiple markets and currencies.
+
+Requirements:
+
+- Market-specific product visibility.
+- Country-specific listing eligibility.
+- Currency-aware price display.
+- Configurable currency conversion.
+- Market-specific availability.
+- Regional shipping eligibility.
+- Localized search content.
+
+Currency conversion must use the authoritative exchange-rate and financial architecture.
+
+Historical financial records must not be recalculated by search.
+
+Search price comparisons must clearly identify the displayed currency and conversion context.
+
+## 32. Accessibility and User Experience
+
+Search interfaces should support:
+
+- Mobile devices.
+- Desktop devices.
+- Responsive layouts.
+- Keyboard navigation.
+- Screen readers.
+- Accessible autocomplete.
+- Clear filter controls.
+- Clear sorting controls.
+- Loading states.
+- Empty-result states.
+- Error states.
+- Right-to-left layouts.
+- Left-to-right layouts.
+
+Search results must communicate sponsored placements and product availability clearly.
+
+## 33. Future Development
+
+Planned improvements may include:
+
+- Advanced semantic search.
+- AI shopping assistant.
+- Image-based product discovery.
+- Voice search.
+- Advanced personalization.
+- Global search dashboards.
+- Advanced product comparison.
+- Predictive query suggestions.
+- Intelligent multilingual discovery.
+
+Future features must preserve the security, privacy, and data integrity principles of the platform.
+
+## 34. Core Principles
+
+The QAVENTRIX Search System must be:
+
+- Accurate.
+- Fast.
+- Secure.
+- Multilingual.
+- Scalable.
+- Privacy-aware.
+- Accessible.
+- Transparent.
+- Reliable.
+- Consistent with authoritative marketplace data.
+
+QAVENTRIX must make product and seller discovery simple, trustworthy, and efficient for customers worldwide.
