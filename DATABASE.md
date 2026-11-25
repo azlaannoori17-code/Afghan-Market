@@ -1,11 +1,5 @@
-# Global Database Architecture
-
-## 1. Overview
-
-Afghan Market is a global-ready, multi-vendor e-commerce marketplace.
-
+QAVENTRIX is a global-ready, multi-vendor e-commerce marketplace.
 Its database architecture must support:
-
 - Multiple countries and markets.
 - Multiple sellers and stores.
 - Millions of products and product listings.
@@ -239,7 +233,7 @@ A seller must never be able to access another seller's private:
 
 ## 7. Multi-Tenant Data Isolation
 
-Afghan Market is a multi-vendor platform.
+QAVENTRIX is a multi-vendor platform.
 
 Seller data isolation is a fundamental security requirement.
 
@@ -1474,7 +1468,7 @@ Features must not be described as operational until they have been implemented a
 
 ## 40. Final Architecture Goal
 
-The Afghan Market database must provide a secure, consistent, reliable, and globally extensible foundation for a multi-vendor marketplace.
+The QAVENTRIX database must provide a secure, consistent, reliable, and globally extensible foundation for a multi-vendor marketplace.
 
 Its most important priorities are:
 
