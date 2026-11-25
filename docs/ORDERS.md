@@ -304,6 +304,7 @@ For online payments, the workflow may include:
 8. Capture payment according to the provider's authorization and capture model.
 9. Record the financial transaction.
 If payment capture fails after inventory reservation is committed, the order must enter a defined payment-recovery or exception state. The system must not silently treat the order as paid; inventory release or restoration must follow an explicit compensation workflow and must be idempotent.
+
 For cash on delivery:
 
 1. Validate checkout information.
