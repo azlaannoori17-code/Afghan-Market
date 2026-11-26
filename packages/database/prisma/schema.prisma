@@ -93,11 +93,7 @@ model UserProfile {
   createdAt   DateTime  @default(now()) @db.Timestamptz(6)
   updatedAt   DateTime  @updatedAt @db.Timestamptz(6)
 
-  user User @relation(
-    fields: [userId],
-    references: [id],
-    onDelete: Restrict
-  )
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
 
   @@map("user_profiles")
 }
@@ -123,11 +119,7 @@ model UserAuthIdentity {
   createdAt       DateTime     @default(now()) @db.Timestamptz(6)
   updatedAt       DateTime     @updatedAt @db.Timestamptz(6)
 
-  user User @relation(
-    fields: [userId],
-    references: [id],
-    onDelete: Restrict
-  )
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
 
   @@unique([identityType, identifier])
   @@unique([provider, providerSubject])
@@ -154,11 +146,7 @@ model UserSession {
 
   createdAt  DateTime  @default(now()) @db.Timestamptz(6)
 
-  user User @relation(
-    fields: [userId],
-    references: [id],
-    onDelete: Restrict
-  )
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
 
   @@index([userId])
   @@index([expiresAt])
@@ -218,17 +206,9 @@ model RolePermission {
   roleId       String @db.Uuid
   permissionId String @db.Uuid
 
-  role Role @relation(
-    fields: [roleId],
-    references: [id],
-    onDelete: Restrict
-  )
+  role Role @relation(fields: [roleId], references: [id], onDelete: Restrict)
 
-  permission Permission @relation(
-    fields: [permissionId],
-    references: [id],
-    onDelete: Restrict
-  )
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Restrict)
 
   @@unique([roleId, permissionId])
   @@index([permissionId])
@@ -252,17 +232,9 @@ model UserRoleAssignment {
   expiresAt  DateTime?     @db.Timestamptz(6)
   isActive   Boolean       @default(true)
 
-  user User @relation(
-    fields: [userId],
-    references: [id],
-    onDelete: Restrict
-  )
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
 
-  role Role @relation(
-    fields: [roleId],
-    references: [id],
-    onDelete: Restrict
-  )
+  role Role @relation(fields: [roleId], references: [id], onDelete: Restrict)
 
   @@index([userId, isActive])
   @@index([roleId])
@@ -289,11 +261,7 @@ model UserSecurityEvent {
 
   createdAt   DateTime              @default(now()) @db.Timestamptz(6)
 
-  user User @relation(
-    fields: [userId],
-    references: [id],
-    onDelete: Restrict
-  )
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
 
   @@index([userId, createdAt])
   @@index([eventType])
