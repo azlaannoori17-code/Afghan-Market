@@ -8,3 +8,4 @@ build/
 coverage/
 .DS_Store
 packages/database/src/generated/
+apps/web/tsconfig.tsbuildinfo
