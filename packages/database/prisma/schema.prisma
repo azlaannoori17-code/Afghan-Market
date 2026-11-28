@@ -51,20 +51,27 @@ enum SecurityEventSeverity {
 // ==========================================
 // 1. USERS
 // ==========================================
+enum UserApprovalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
 
 model User {
-  id        String     @id @default(uuid()) @db.Uuid
-  status    UserStatus @default(PENDING_VERIFICATION)
+  id     String     @id @default(uuid()) @db.Uuid
+  status UserStatus @default(PENDING_VERIFICATION)
 
-  createdAt DateTime   @default(now()) @db.Timestamptz(6)
-  updatedAt DateTime   @updatedAt @db.Timestamptz(6)
-  deletedAt DateTime?  @db.Timestamptz(6)
+  approvalStatus UserApprovalStatus @default(PENDING)
+  createdAt DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime  @updatedAt @db.Timestamptz(6)
+  deletedAt DateTime? @db.Timestamptz(6)
 
-  profile         UserProfile?
-  authIdentities  UserAuthIdentity[]
-  sessions        UserSession[]
-  roleAssignments UserRoleAssignment[]
-  securityEvents  UserSecurityEvent[]
+  profile             UserProfile?
+  authIdentities      UserAuthIdentity[]
+  sessions            UserSession[]
+  roleAssignments     UserRoleAssignment[]
+  securityEvents      UserSecurityEvent[]
+  sellerOrganizations SellerOrganization[] @relation("sellerorganizationOwner")
 
   @@index([status])
   @@index([createdAt])
@@ -73,16 +80,16 @@ model User {
 
 // ==========================================
 // 2. USER PROFILES
-// ==========================================
+// ===========================================
 
 model UserProfile {
-  id          String    @id @default(uuid()) @db.Uuid
-  userId      String    @unique @db.Uuid
+  id     String @id @default(uuid()) @db.Uuid
+  userId String @unique @db.Uuid
 
-  firstName   String?   @db.VarChar(100)
-  lastName    String?   @db.VarChar(100)
-  displayName String?   @db.VarChar(150)
-  avatarUrl   String?   @db.VarChar(500)
+  firstName   String? @db.VarChar(100)
+  lastName    String? @db.VarChar(100)
+  displayName String? @db.VarChar(150)
+  avatarUrl   String? @db.VarChar(500)
 
   dateOfBirth DateTime? @db.Date
   countryCode String?   @db.VarChar(2)
@@ -90,8 +97,8 @@ model UserProfile {
   city        String?   @db.VarChar(100)
   address     String?   @db.VarChar(500)
 
-  createdAt   DateTime  @default(now()) @db.Timestamptz(6)
-  updatedAt   DateTime  @updatedAt @db.Timestamptz(6)
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @db.Timestamptz(6)
 
   user User @relation(fields: [userId], references: [id], onDelete: Restrict)
 
@@ -103,21 +110,21 @@ model UserProfile {
 // ==========================================
 
 model UserAuthIdentity {
-  id              String       @id @default(uuid()) @db.Uuid
-  userId          String       @db.Uuid
+  id     String @id @default(uuid()) @db.Uuid
+  userId String @db.Uuid
 
-  identityType    IdentityType
-  provider        AuthProvider @default(PASSWORD)
+  identityType IdentityType
+  provider     AuthProvider @default(PASSWORD)
 
-  identifier      String       @db.VarChar(320)
-  providerSubject String?      @db.VarChar(255)
+  identifier      String  @db.VarChar(320)
+  providerSubject String? @db.VarChar(255)
 
-  passwordHash    String?      @db.VarChar(255)
-  isVerified      Boolean      @default(false)
-  verifiedAt      DateTime?    @db.Timestamptz(6)
+  passwordHash String?   @db.VarChar(255)
+  isVerified   Boolean   @default(false)
+  verifiedAt   DateTime? @db.Timestamptz(6)
 
-  createdAt       DateTime     @default(now()) @db.Timestamptz(6)
-  updatedAt       DateTime     @updatedAt @db.Timestamptz(6)
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @db.Timestamptz(6)
 
   user User @relation(fields: [userId], references: [id], onDelete: Restrict)
 
@@ -126,6 +133,7 @@ model UserAuthIdentity {
   @@index([userId])
   @@index([isVerified])
   @@map("user_auth_identities")
+  emailVerificationTokens EmailVerificationToken[]
 }
 
 // ==========================================
@@ -133,18 +141,18 @@ model UserAuthIdentity {
 // ==========================================
 
 model UserSession {
-  id         String    @id @default(uuid()) @db.Uuid
-  userId     String    @db.Uuid
+  id     String @id @default(uuid()) @db.Uuid
+  userId String @db.Uuid
 
-  tokenHash  String    @unique @db.VarChar(255)
-  ipAddress  String?   @db.VarChar(45)
-  userAgent  String?   @db.VarChar(500)
+  tokenHash String  @unique @db.VarChar(255)
+  ipAddress String? @db.VarChar(45)
+  userAgent String? @db.VarChar(500)
 
   expiresAt  DateTime  @db.Timestamptz(6)
   lastUsedAt DateTime? @db.Timestamptz(6)
   revokedAt  DateTime? @db.Timestamptz(6)
 
-  createdAt  DateTime  @default(now()) @db.Timestamptz(6)
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
 
   user User @relation(fields: [userId], references: [id], onDelete: Restrict)
 
@@ -159,17 +167,17 @@ model UserSession {
 // ==========================================
 
 model Role {
-  id          String   @id @default(uuid()) @db.Uuid
+  id String @id @default(uuid()) @db.Uuid
 
-  code        String   @unique @db.VarChar(80)
-  name        String   @db.VarChar(120)
-  description String?  @db.VarChar(500)
+  code        String  @unique @db.VarChar(80)
+  name        String  @db.VarChar(120)
+  description String? @db.VarChar(500)
 
-  isSystem    Boolean  @default(false)
-  isActive    Boolean  @default(true)
+  isSystem Boolean @default(false)
+  isActive Boolean @default(true)
 
-  createdAt   DateTime @default(now()) @db.Timestamptz(6)
-  updatedAt   DateTime @updatedAt @db.Timestamptz(6)
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @db.Timestamptz(6)
 
   permissions RolePermission[]
   assignments UserRoleAssignment[]
@@ -183,13 +191,13 @@ model Role {
 // ==========================================
 
 model Permission {
-  id          String   @id @default(uuid()) @db.Uuid
+  id String @id @default(uuid()) @db.Uuid
 
-  code        String   @unique @db.VarChar(120)
-  name        String   @db.VarChar(120)
-  description String?  @db.VarChar(500)
+  code        String  @unique @db.VarChar(120)
+  name        String  @db.VarChar(120)
+  description String? @db.VarChar(500)
 
-  createdAt   DateTime @default(now()) @db.Timestamptz(6)
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
 
   roles RolePermission[]
 
@@ -201,7 +209,7 @@ model Permission {
 // ==========================================
 
 model RolePermission {
-  id           String @id @default(uuid()) @db.Uuid
+  id String @id @default(uuid()) @db.Uuid
 
   roleId       String @db.Uuid
   permissionId String @db.Uuid
@@ -220,17 +228,17 @@ model RolePermission {
 // ==========================================
 
 model UserRoleAssignment {
-  id         String        @id @default(uuid()) @db.Uuid
+  id String @id @default(uuid()) @db.Uuid
 
-  userId     String        @db.Uuid
-  roleId     String        @db.Uuid
+  userId String @db.Uuid
+  roleId String @db.Uuid
 
-  scopeType  RoleScopeType @default(GLOBAL)
-  scopeId    String?       @db.Uuid
+  scopeType RoleScopeType @default(GLOBAL)
+  scopeId   String?       @db.Uuid
 
-  assignedAt DateTime      @default(now()) @db.Timestamptz(6)
-  expiresAt  DateTime?     @db.Timestamptz(6)
-  isActive   Boolean       @default(true)
+  assignedAt DateTime  @default(now()) @db.Timestamptz(6)
+  expiresAt  DateTime? @db.Timestamptz(6)
+  isActive   Boolean   @default(true)
 
   user User @relation(fields: [userId], references: [id], onDelete: Restrict)
 
@@ -247,19 +255,19 @@ model UserRoleAssignment {
 // ==========================================
 
 model UserSecurityEvent {
-  id          String                @id @default(uuid()) @db.Uuid
+  id String @id @default(uuid()) @db.Uuid
 
-  userId      String                @db.Uuid
-  eventType   String                @db.VarChar(100)
-  severity    SecurityEventSeverity @default(INFO)
+  userId    String                @db.Uuid
+  eventType String                @db.VarChar(100)
+  severity  SecurityEventSeverity @default(INFO)
 
-  description String?               @db.VarChar(1000)
-  ipAddress   String?               @db.VarChar(45)
-  userAgent   String?               @db.VarChar(500)
+  description String? @db.VarChar(1000)
+  ipAddress   String? @db.VarChar(45)
+  userAgent   String? @db.VarChar(500)
 
-  metadata    Json?
+  metadata Json?
 
-  createdAt   DateTime              @default(now()) @db.Timestamptz(6)
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
 
   user User @relation(fields: [userId], references: [id], onDelete: Restrict)
 
@@ -267,4 +275,77 @@ model UserSecurityEvent {
   @@index([eventType])
   @@index([severity, createdAt])
   @@map("user_security_events")
+}
+
+enum SellerOrganizationStatus {
+  PENDING_REVIEW
+  ACTIVE
+  SUSPENDED
+  REJECTED
+}
+
+enum StoreStatus {
+  PENDING_REVIEW
+  ACTIVE
+  SUSPENDED
+  CLOSED
+}
+
+model SellerOrganization {
+  id           String                   @id @default(uuid()) @db.Uuid
+  ownerId      String                   @db.Uuid
+  name         String                   @db.VarChar(150)
+  slug         String                   @unique @db.VarChar(180)
+  legalName    String?                  @db.VarChar(200)
+  description  String?                  @db.VarChar(1000)
+  contactEmail String?                  @db.VarChar(320)
+  contactPhone String?                  @db.VarChar(30)
+  status       SellerOrganizationStatus @default(PENDING_REVIEW)
+  verifiedAt   DateTime?                @db.Timestamptz(6)
+  createdAt    DateTime                 @default(now()) @db.Timestamptz(6)
+  updatedAt    DateTime                 @updatedAt @db.Timestamptz(6)
+
+  owner  User    @relation("sellerorganizationOwner", fields: [ownerId], references: [id], onDelete: Restrict)
+  stores Store[]
+
+  @@index([ownerId])
+  @@index([status])
+  @@map("seller_organizations")
+}
+
+model Store {
+  id                   String      @id @default(uuid()) @db.Uuid
+  sellerOrganizationId String      @db.Uuid
+  name                 String      @db.VarChar(150)
+  slug                 String      @unique @db.VarChar(180)
+  description          String?     @db.VarChar(1000)
+  province             String?     @db.VarChar(100)
+  city                 String?     @db.VarChar(100)
+  address              String?     @db.VarChar(500)
+  contactPhone         String?     @db.VarChar(30)
+  status               StoreStatus @default(PENDING_REVIEW)
+  createdAt            DateTime    @default(now()) @db.Timestamptz(6)
+  updatedAt            DateTime    @updatedAt @db.Timestamptz(6)
+
+  sellerOrganization SellerOrganization @relation(fields: [sellerOrganizationId], references: [id], onDelete: Restrict)
+
+  @@index([sellerOrganizationId])
+  @@index([status])
+  @@map("stores")
+}
+
+
+model EmailVerificationToken {
+  id             String           @id @default(uuid()) @db.Uuid
+  authIdentityId String           @db.Uuid
+  tokenHash      String           @unique @db.VarChar(64)
+  expiresAt      DateTime         @db.Timestamptz(6)
+  usedAt         DateTime?        @db.Timestamptz(6)
+  createdAt      DateTime         @default(now()) @db.Timestamptz(6)
+
+  authIdentity UserAuthIdentity @relation(fields: [authIdentityId], references: [id], onDelete: Cascade)
+
+  @@index([authIdentityId])
+  @@index([expiresAt])
+  @@map("email_verification_tokens")
 }
