@@ -26,7 +26,7 @@ export default function AccountPage() {
             fontSize: "24px",
             fontWeight: "bold",
           }}>
-            افغان مارکت 🇦🇫
+            QAVENTRIX MARKET 🇦🇫
           </Link>
 
           <nav style={{
@@ -58,7 +58,7 @@ export default function AccountPage() {
         </h1>
 
         <p style={{ fontSize: "16px" }}>
-          به خانوادهٔ بزرگ افغان مارکت خوش آمدی.
+          به خانوادهٔ بزرگ QAVENTRIX MARKET خوش آمدی.
         </p>
       </section>
 
@@ -98,7 +98,7 @@ export default function AccountPage() {
               lineHeight: 2,
               marginBottom: "22px",
             }}>
-              اگر قبلاً در افغان مارکت حساب ساخته‌ای،
+              اگر قبلاً در QAVENTRIX MARKET حساب ساخته‌ای،
               از این بخش وارد حساب خود شو.
             </p>
 
@@ -195,7 +195,7 @@ export default function AccountPage() {
               lineHeight: 2,
               marginBottom: "22px",
             }}>
-              به افغان مارکت بپیوند و خرید آسان را از
+              به QAVENTRIX MARKET بپیوند و خرید آسان را از
               فروشندگان سراسر افغانستان تجربه کن.
             </p>
 
@@ -294,7 +294,7 @@ export default function AccountPage() {
             margin: "12px 0",
             fontSize: "22px",
           }}>
-            می‌خواهی فروشندهٔ افغان مارکت شوی؟
+            می‌خواهی فروشندهٔ QAVENTRIX MARKET شوی؟
           </h2>
 
           <p style={{
@@ -326,7 +326,7 @@ export default function AccountPage() {
         padding: "28px 15px",
         marginTop: "45px",
       }}>
-        <h2>افغان مارکت 🇦🇫</h2>
+        <h2>QAVENTRIX MARKET 🇦🇫</h2>
 
         <p style={{
           marginTop: "10px",
@@ -339,7 +339,7 @@ export default function AccountPage() {
           marginTop: "15px",
           color: "#cbd5e1",
         }}>
-          © 2026 Afghan Market. All rights reserved.
+          © 2026 QAVENTRIX MARKET. All rights reserved.
         </p>
       </footer>
     </main>

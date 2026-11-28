@@ -77,7 +77,7 @@ export default function SellersPage() {
             fontSize: "24px",
             fontWeight: "bold",
           }}>
-            افغان مارکت 🇦🇫
+            QAVENTRIX MARKET 🇦🇫
           </Link>
 
           <nav style={{
@@ -105,7 +105,7 @@ export default function SellersPage() {
           fontSize: "32px",
           marginBottom: "15px",
         }}>
-          فروشندگان افغان مارکت
+          فروشندگان QAVENTRIX MARKET
         </h1>
 
         <p style={{
@@ -140,7 +140,7 @@ export default function SellersPage() {
             color: "#687386",
             lineHeight: 2,
           }}>
-            افغان مارکت فرصتی برای معرفی فروشگاه‌ها و رشد کسب‌وکارهای
+            QAVENTRIX MARKET فرصتی برای معرفی فروشگاه‌ها و رشد کسب‌وکارهای
             کوچک و بزرگ افغانستان فراهم می‌کند.
           </p>
         </div>
@@ -245,7 +245,7 @@ export default function SellersPage() {
         padding: "28px 15px",
         marginTop: "45px",
       }}>
-        <h2>افغان مارکت 🇦🇫</h2>
+        <h2>QAVENTRIX MARKET 🇦🇫</h2>
 
         <p style={{
           marginTop: "10px",
@@ -258,7 +258,7 @@ export default function SellersPage() {
           marginTop: "15px",
           color: "#cbd5e1",
         }}>
-          © 2026 Afghan Market. All rights reserved.
+          © 2026 QAVENTRIX MARKET. All rights reserved.
         </p>
       </footer>
     </main>

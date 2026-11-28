@@ -64,7 +64,7 @@ export default function SellerRegisterPage() {
             fontSize: "24px",
             fontWeight: "bold",
           }}>
-            افغان مارکت 🇦🇫
+            QAVENTRIX MARKET 🇦🇫
           </Link>
 
           <nav style={{
@@ -90,7 +90,7 @@ export default function SellerRegisterPage() {
           fontSize: "32px",
           marginBottom: "12px",
         }}>
-          ثبت‌نام فروشنده در افغان مارکت
+          ثبت‌نام فروشنده در QAVENTRIX MARKET
         </h1>
 
         <p style={{
@@ -283,7 +283,7 @@ export default function SellerRegisterPage() {
             }}>
               توجه: پس از اتصال سیستم ثبت‌نام واقعی،
               اطلاعات فروشگاه برای بررسی و تأیید مدیریت
-              افغان مارکت ارسال خواهد شد.
+              QAVENTRIX MARKET ارسال خواهد شد.
             </div>
 
             <button
@@ -313,7 +313,7 @@ export default function SellerRegisterPage() {
         padding: "28px 15px",
         marginTop: "45px",
       }}>
-        <h2>افغان مارکت 🇦🇫</h2>
+        <h2>QAVENTRIX MARKET 🇦🇫</h2>
 
         <p style={{
           marginTop: "10px",
@@ -326,7 +326,7 @@ export default function SellerRegisterPage() {
           marginTop: "15px",
           color: "#cbd5e1",
         }}>
-          © 2026 Afghan Market. All rights reserved.
+          © 2026 QAVENTRIX MARKET. All rights reserved.
         </p>
       </footer>
     </main>
